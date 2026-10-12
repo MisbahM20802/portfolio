@@ -9,12 +9,23 @@ export default function ProjectCard({ project, index, isFlipped, onHover, onLeav
     onHover();
   };
 
+  const handleClick = (e) => {
+    if (e.target.closest('.project-live-link')) return;
+    playClinkSound();
+    if (isFlipped) {
+      onLeave();
+    } else {
+      onHover();
+    }
+  };
+
   return (
     <div 
       className="project-card-wrapper" 
       data-index={index}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onLeave}
+      onClick={handleClick}
     >
       <div className={`project-card-inner ${isFlipped ? 'flipped' : ''}`}>
         
